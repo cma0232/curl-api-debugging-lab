@@ -46,9 +46,8 @@ export function createApp() {
       });
     }
 
-    // Intentional bug for the exercise: Node normalizes incoming header names
-    // to lowercase, but this lookup uses the mixed-case spelling.
-    const merchantId = request.headers["X-Merchant-ID"];
+    // Node normalizes incoming header names to lowercase.
+    const merchantId = request.headers["x-merchant-id"];
     if (merchantId !== MERCHANT_ID) {
       return send(403, {
         error: { code: "merchant_forbidden", message: "The merchant header is missing or invalid." },
